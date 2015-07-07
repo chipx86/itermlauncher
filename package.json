@@ -1,0 +1,31 @@
+{
+    "name": "itermlauncher",
+    "version": "0.5.1",
+    "description": "Console-based iTerm2 profile launcher",
+    "bin": "./bin/itermlauncher.js",
+    "dependencies": {
+        "applescript": ">=1.0",
+        "terminal-menu": ">=2.1.1",
+        "path-extra": ">=1.0.3",
+        "plist": ">=1.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/chipx86/itermlauncher.git"
+    },
+    "homepage": "https://github.com/chipx86/itermlauncher",
+    "keywords": [
+		"iterm",
+        "iterm2",
+		"mac",
+        "menu",
+		"osx",
+        "terminal"
+    ],
+    "author": {
+        "name": "Christian Hammond",
+        "email": "christian@beanbaginc.com",
+        "url": "http://www.chipx86.com/"
+    },
+    "license": "MIT"
+}
