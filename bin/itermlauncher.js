@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var applescript = require('applescript'),
     childProcess = require('child_process'),
     fs = require('fs'),
