@@ -1,6 +1,6 @@
 {
     "name": "itermlauncher",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "description": "Console-based iTerm2 profile launcher",
     "bin": "./bin/itermlauncher.js",
     "dependencies": {
