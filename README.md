@@ -16,11 +16,11 @@ tags), and let you choose one to launch within the window.
 Installing iTermLauncher
 ------------------------
 
-Installation is simple. Just make sure you have node.js installed, and run:
+Installation is simple. Just make sure you have node.js installed, and type:
 
-    $ sudo npm -g install less
+    $ sudo npm -g install itermlauncher
 
-To run it, just run:
+To run it:
 
     $ itermlauncher
 
