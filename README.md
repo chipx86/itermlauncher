@@ -2,7 +2,7 @@ iTermLauncher for iTerm2
 ========================
 
 iTermLauncher is a handy console-based menu for quickly launching new
-terminals within the same window using iTerm2
+terminals within the same window using iTerm2.
 
 This is intended for use with the iTerm2 Hotkey window, for launching
 additional terminals within that window. I personally use it to keep all my
