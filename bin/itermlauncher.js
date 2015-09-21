@@ -81,14 +81,14 @@ function buildMenu(config, menuEntries) {
     menu.write('=================\n\n');
 
     menu.add('Default Terminal', function() {
-        launchProfile('Default', onError);
+        launchProfile(config, 'Default', onError);
     });
 
     menu.write('\n');
 
     menuEntries.forEach(function(entry) {
         menu.add(entry, function() {
-            launchProfile(entry, onError);
+            launchProfile(config, entry, onError);
         });
     });
 
@@ -101,16 +101,28 @@ function buildMenu(config, menuEntries) {
     process.stdin.setRawMode(true);
 }
 
-function launchProfile(name, onError) {
-    var script = [
-        'tell application "iTerm"',
-        '    tell the current terminal',
-        '        launch session "' + name + '"',
-        '    end tell',
-        'end tell'
-    ].join('\n');
+function launchProfile(config, name, onError) {
+    var script;
 
-    applescript.execString(script, function(err, rtn) {
+    if (config.itermVersion === 3) {
+        script = [
+            'tell application "iTerm"',
+            '    tell current window',
+            '        create tab with profile "' + name + '"',
+            '    end tell',
+            'end tell'
+        ];
+    } else {
+        script = [
+            'tell application "iTerm"',
+            '    tell the current terminal',
+            '        launch session "' + name + '"',
+            '    end tell',
+            'end tell'
+        ];
+    }
+
+    applescript.execString(script.join('\n'), function(err, rtn) {
         if (err) {
             onError(err, rtn);
         }

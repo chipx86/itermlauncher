@@ -38,17 +38,23 @@ If you want to change things, create a JSON file in
 `~/.config/itermlauncher/config.json`. This can look something like:
 
     {
-		"bg": "black",
-		"fg": "yellow",
-		"menuWidth": 50,
-		"requiredTags": [
-		    "Dev Servers"
-		],
-	    "plistFilename": "/path/to/com.googlecode.iterm2.plist"
-	}
+        "bg": "black",
+        "fg": "yellow",
+        "menuWidth": 50,
+		"itermVersion": 2,
+        "requiredTags": [
+            "Dev Servers"
+        ],
+        "plistFilename": "/path/to/com.googlecode.iterm2.plist"
+    }
 
 The one you most likely want to set is `requiredTags`. Any profile appearing
 in the menu must have all of the listed tags.
+
+If you're running the iTerm 3 betas, you'll want to set `itermVersion` to 3.
+Otherwise, it will use the old AppleScript code. Once iTerm 3 is released,
+it will be the default, though iTerm 2 compatibility will remain by
+setting `itermVersion` to 2.
 
 You can also specify a custom configuration file as an argument when running
 `itermlauncher`:
