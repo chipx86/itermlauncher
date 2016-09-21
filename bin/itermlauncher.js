@@ -76,7 +76,9 @@ function buildMenu(config, menuEntries) {
         }
     });
 
+    menu.setMaxListeners(0);
     menu.reset();
+
     menu.write('Launch a Terminal\n');
     menu.write('=================\n\n');
 
