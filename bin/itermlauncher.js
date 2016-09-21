@@ -9,7 +9,7 @@ var applescript = require('applescript'),
 
 
 function getIterm2Config(config) {
-    var data;
+    let data;
 
     if (config.plistFilename) {
         data = fs.readFileSync(config.plistFilename, 'utf8');
@@ -22,20 +22,20 @@ function getIterm2Config(config) {
 }
 
 function buildEntries(config) {
-    var plistData = getIterm2Config(config),
-        requiredTags = config.requiredTags || [],
-        itermBookmarks = plistData['New Bookmarks'],
-        entries = [];
+    const plistData = getIterm2Config(config);
+    const requiredTags = config.requiredTags || [];
+    const itermBookmarks = plistData['New Bookmarks'];
+    let entries = [];
 
-    itermBookmarks.forEach(function(bookmark) {
-        var valid = true,
-            tags = {};
+    itermBookmarks.forEach(bookmark => {
+        let valid = true;
+        let tags = {};
 
-        bookmark.Tags.forEach(function(tag) {
+        bookmark.Tags.forEach(tag => {
             tags[tag] = true;
         });
 
-        valid = requiredTags.every(function(tag) {
+        valid = requiredTags.every(tag => {
             return tags.hasOwnProperty(tag);
         });
 
@@ -48,7 +48,7 @@ function buildEntries(config) {
 }
 
 function buildMenu(config, menuEntries) {
-    var NUM_DEFAULT_ITEMS = 5;
+    const NUM_DEFAULT_ITEMS = 5;
 
     function onError(err, rtn) {
         menu.close();
@@ -57,12 +57,12 @@ function buildMenu(config, menuEntries) {
         process.exit(1);
     };
 
-    var menuWidth = config.menuWidth || 50,
-        menuHeight = NUM_DEFAULT_ITEMS + menuEntries.length,
-        horizPadding = Math.floor((process.stdout.columns - menuWidth) / 2.0),
-        vertPadding = Math.floor((process.stdout.rows - menuHeight) / 2.0)
+    const menuWidth = config.menuWidth || 50;
+    const menuHeight = NUM_DEFAULT_ITEMS + menuEntries.length;
+    const horizPadding = Math.floor((process.stdout.columns - menuWidth) / 2.0);
+    const vertPadding = Math.floor((process.stdout.rows - menuHeight) / 2.0);
 
-    var menu = Menu({
+    const menu = Menu({
         width: menuWidth,
         x: 0,
         y: 0,
@@ -72,7 +72,7 @@ function buildMenu(config, menuEntries) {
             left: horizPadding,
             right: horizPadding,
             top: vertPadding,
-            bottom: vertPadding
+            bottom: vertPadding,
         }
     });
 
@@ -80,19 +80,19 @@ function buildMenu(config, menuEntries) {
     menu.write('Launch a Terminal\n');
     menu.write('=================\n\n');
 
-    menu.add('Default Terminal', function() {
+    menu.add('Default Terminal', () => {
         launchProfile(config, 'Default', onError);
     });
 
     menu.write('\n');
 
-    menuEntries.forEach(function(entry) {
-        menu.add(entry, function() {
+    menuEntries.forEach(entry => {
+        menu.add(entry, () => {
             launchProfile(config, entry, onError);
         });
     });
 
-    menu.on('close', function() {
+    menu.on('close', () => {
         process.stdin.setRawMode(false);
         process.stdin.end();
     });
@@ -102,7 +102,7 @@ function buildMenu(config, menuEntries) {
 }
 
 function launchProfile(config, name, onError) {
-    var script;
+    let script;
 
     if (config.itermVersion === 3) {
         script = [
@@ -122,7 +122,7 @@ function launchProfile(config, name, onError) {
         ];
     }
 
-    applescript.execString(script.join('\n'), function(err, rtn) {
+    applescript.execString(script.join('\n'), (err, rtn) => {
         if (err) {
             onError(err, rtn);
         }
